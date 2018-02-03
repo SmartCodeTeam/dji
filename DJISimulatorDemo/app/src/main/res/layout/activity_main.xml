@@ -52,7 +52,6 @@
         android:layout_marginLeft="5dp"
         android:layout_alignTop="@+id/btn_start_simulator"
         android:layout_alignStart="@+id/directionJoystickLeft"
-        android:visibility="gone"
         android:layout_marginTop="0dp" />
 
     <Button
@@ -64,7 +63,6 @@
         android:layout_below="@+id/btn_enable_virtual_stick"
         android:layout_alignStart="@+id/btn_enable_virtual_stick"
         android:layout_marginLeft="0dp"
-        android:visibility="gone"
         android:layout_alignEnd="@+id/btn_enable_virtual_stick" />
 
     <Button
@@ -89,7 +87,6 @@
         android:layout_below="@+id/textview_simulator"
         android:layout_toEndOf="@+id/btn_enable_virtual_stick"
         android:layout_marginTop="107dp"
-        android:visibility="gone"
         android:layout_marginLeft="10dp" />
 
     <Button
@@ -112,7 +109,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
-        android:visibility="gone"
         android:background="@mipmap/joystick_bg"/>
 
     <com.dji.simulatorDemo.OnScreenJoystick
@@ -123,7 +119,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
-        android:visibility="gone"
         android:background="@mipmap/joystick_bg"/>
 
     <!--<Button-->

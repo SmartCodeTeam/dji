@@ -8,12 +8,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +29,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
 import dji.common.flightcontroller.simulator.InitializationData;
 import dji.common.flightcontroller.simulator.SimulatorState;
@@ -44,7 +45,6 @@ import dji.log.DJILog;
 import dji.sdk.base.BaseProduct;
 import dji.sdk.flightcontroller.FlightController;
 import dji.sdk.products.Aircraft;
-import dji.common.error.DJIError;
 import dji.sdk.sdkmanager.DJISDKManager;
 import dji.sdk.useraccount.UserAccountManager;
 
@@ -155,7 +155,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    showToast( "registering, pls wait...");
+                    showToast("registering, pls wait...");
                     DJISDKManager.getInstance().registerApp(getApplicationContext(), new DJISDKManager.SDKManagerCallback() {
                         @Override
                         public void onRegister(DJIError djiError) {
@@ -164,7 +164,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 DJISDKManager.getInstance().startConnectionToProduct();
                                 showToast("Register Success");
                             } else {
-                                showToast( "Register sdk fails, check network is available");
+                                showToast("Register sdk fails, check network is available");
                             }
                             Log.v(TAG, djiError.getDescription());
                         }
@@ -196,18 +196,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void updateTitleBar() {
-        if(mConnectStatusTextView == null) return;
+        if (mConnectStatusTextView == null) return;
         boolean ret = false;
         BaseProduct product = DJISimulatorApplication.getProductInstance();
         if (product != null) {
-            if(product.isConnected()) {
+            if (product.isConnected()) {
                 //The product is connected
                 mConnectStatusTextView.setText(DJISimulatorApplication.getProductInstance().getModel() + " Connected");
                 ret = true;
             } else {
-                if(product instanceof Aircraft) {
-                    Aircraft aircraft = (Aircraft)product;
-                    if(aircraft.getRemoteController() != null && aircraft.getRemoteController().isConnected()) {
+                if (product instanceof Aircraft) {
+                    Aircraft aircraft = (Aircraft) product;
+                    if (aircraft.getRemoteController() != null && aircraft.getRemoteController().isConnected()) {
                         // The product is not connected, but the remote controller is connected
                         mConnectStatusTextView.setText("only RC Connected");
                         ret = true;
@@ -216,7 +216,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         }
 
-        if(!ret) {
+        if (!ret) {
             // The product or the remote controller are not connected.
             mConnectStatusTextView.setText("Disconnected");
         }
@@ -244,7 +244,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onStop();
     }
 
-    public void onReturn(View view){
+    public void onReturn(View view) {
         Log.e(TAG, "onReturn");
         this.finish();
     }
@@ -263,7 +263,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onDestroy();
     }
 
-    private void loginAccount(){
+    private void loginAccount() {
 
         UserAccountManager.getInstance().logIntoDJIUserAccount(this,
                 new CommonCallbacks.CompletionCallbackWith<UserAccountState>() {
@@ -271,6 +271,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     public void onSuccess(final UserAccountState userAccountState) {
                         Log.e(TAG, "Login Success");
                     }
+
                     @Override
                     public void onFailure(DJIError error) {
                         showToast("Login Error:"
@@ -325,8 +326,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnSimulator = (ToggleButton) findViewById(R.id.btn_start_simulator);
         mTextView = (TextView) findViewById(R.id.textview_simulator);
         mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
-        mScreenJoystickRight = (OnScreenJoystick)findViewById(R.id.directionJoystickRight);
-        mScreenJoystickLeft = (OnScreenJoystick)findViewById(R.id.directionJoystickLeft);
+        mScreenJoystickRight = (OnScreenJoystick) findViewById(R.id.directionJoystickRight);
+        mScreenJoystickLeft = (OnScreenJoystick) findViewById(R.id.directionJoystickLeft);
 
         mBtnEnableVirtualStick.setOnClickListener(this);
         mBtnDisableVirtualStick.setOnClickListener(this);
@@ -345,16 +346,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         mFlightController.getSimulator()
                                 .start(InitializationData.createInstance(new LocationCoordinate2D(23, 113), 10, 10),
                                         new CommonCallbacks.CompletionCallback() {
-                                    @Override
-                                    public void onResult(DJIError djiError) {
-                                        if (djiError != null) {
-                                            showToast(djiError.getDescription());
-                                        }else
-                                        {
-                                            showToast("Start Simulator Success");
-                                        }
-                                    }
-                                });
+                                            @Override
+                                            public void onResult(DJIError djiError) {
+                                                if (djiError != null) {
+                                                    showToast(djiError.getDescription());
+                                                } else {
+                                                    showToast("Start Simulator Success");
+                                                }
+                                            }
+                                        });
                     }
 
                 } else {
@@ -364,40 +364,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     if (mFlightController != null) {
                         mFlightController.getSimulator()
                                 .stop(new CommonCallbacks.CompletionCallback() {
-                                            @Override
-                                            public void onResult(DJIError djiError) {
-                                                if (djiError != null) {
-                                                    showToast(djiError.getDescription());
-                                                }else
-                                                {
-                                                    showToast("Stop Simulator Success");
-                                                }
-                                            }
-                                        }
+                                          @Override
+                                          public void onResult(DJIError djiError) {
+                                              if (djiError != null) {
+                                                  showToast(djiError.getDescription());
+                                              } else {
+                                                  showToast("Stop Simulator Success");
+                                              }
+                                          }
+                                      }
                                 );
                     }
                 }
             }
         });
 
-        mScreenJoystickRight.setJoystickListener(new OnScreenJoystickListener(){
+        mScreenJoystickRight.setJoystickListener(new OnScreenJoystickListener() {
 
             @Override
             public void onTouch(OnScreenJoystick joystick, float pX, float pY) {
-                if(Math.abs(pX) < 0.02 ){
+                if (Math.abs(pX) < 0.02) {
                     pX = 0;
                 }
 
-                if(Math.abs(pY) < 0.02 ){
+                if (Math.abs(pY) < 0.02) {
                     pY = 0;
                 }
 
                 float pitchJoyControlMaxSpeed = 10;
                 float rollJoyControlMaxSpeed = 10;
 
-                mPitch = (float)(pitchJoyControlMaxSpeed * pX);
+                mPitch = (float) (pitchJoyControlMaxSpeed * pX);
 
-                mRoll = (float)(rollJoyControlMaxSpeed * pY);
+                mRoll = (float) (rollJoyControlMaxSpeed * pY);
 
                 if (null == mSendVirtualStickDataTimer) {
                     mSendVirtualStickDataTask = new SendVirtualStickDataTask();
@@ -414,18 +413,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void onTouch(OnScreenJoystick joystick, float pX, float pY) {
-                if(Math.abs(pX) < 0.02 ){
+                if (Math.abs(pX) < 0.02) {
                     pX = 0;
                 }
 
-                if(Math.abs(pY) < 0.02 ){
+                if (Math.abs(pY) < 0.02) {
                     pY = 0;
                 }
                 float verticalJoyControlMaxSpeed = 2;
                 float yawJoyControlMaxSpeed = 30;
 
-                mYaw = (float)(yawJoyControlMaxSpeed * pX);
-                mThrottle = (float)(verticalJoyControlMaxSpeed * pY);
+                mYaw = (float) (yawJoyControlMaxSpeed * pX);
+                mThrottle = (float) (verticalJoyControlMaxSpeed * pY);
 
                 if (null == mSendVirtualStickDataTimer) {
                     mSendVirtualStickDataTask = new SendVirtualStickDataTask();
@@ -435,6 +434,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             }
         });
+
+    }
+
+
+    //FlightControllerの各種パラメータをセットする
+
+    public void setFlightControllerData(float yaw,float pitch,float roll,float throttle) {
+        
+        mYaw = yaw;
+        mPitch = pitch;
+        mRoll = roll;
+        mThrottle = throttle;
+                
+        if(null==mSendVirtualStickDataTimer)
+
+        {
+            mSendVirtualStickDataTask = new SendVirtualStickDataTask();
+            mSendVirtualStickDataTimer = new Timer();
+            mSendVirtualStickDataTimer.schedule(mSendVirtualStickDataTask, 0, 200);
+        }
+
     }
 
     @Override
@@ -513,21 +533,42 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
                 break;
 
-//            case R.id.btn_up:
-//
-//                break;
-//
-//            case R.id.btn_down:
-//                break;
-//
-//            case R.id.btn_left:
-//
-//                break;
-//
-//            case R.id.btn_right:
-//
-//                break;
+            case R.id.right:
+                setFlightControllerData(0,0,1,0.1f);
+                break;
 
+//            case R.id.left:
+//                setFlightControllerData(0,0,-1,0.1f);
+//                break;
+//
+//            case R.id.forward:
+//                setFlightControllerData(0,1,0,0.1f);
+//
+//                break;
+//
+//            case R.id.back:
+//                setFlightControllerData(0,-1,0,0.1f);
+//
+//                break;
+//
+//            case R.id.up:
+//                setFlightControllerData(0,-1,0,0.1f);
+//
+//                break;
+//            case R.id.down:
+//                setFlightControllerData(0,-1,0,0.1f);
+//
+//                break;
+//
+//            case R.id.turn_left:
+//                setFlightControllerData(1,0,0,0.1f);
+//
+//                break;
+//
+//            case R.id.turn_right:
+//                setFlightControllerData(-1,0,0,0.1f);
+//
+//                break;
 
 
             default:

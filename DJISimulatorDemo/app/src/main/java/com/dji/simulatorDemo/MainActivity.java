@@ -31,6 +31,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
+import dji.common.flightcontroller.FlightControllerState;
 import dji.common.flightcontroller.simulator.InitializationData;
 import dji.common.flightcontroller.simulator.SimulatorState;
 import dji.common.flightcontroller.virtualstick.FlightControlData;
@@ -293,13 +294,29 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mFlightController.setYawControlMode(YawControlMode.ANGULAR_VELOCITY);
             mFlightController.setVerticalControlMode(VerticalControlMode.VELOCITY);
             mFlightController.setRollPitchCoordinateSystem(FlightCoordinateSystem.BODY);
+            mFlightController.setStateCallback(new FlightControllerState.Callback() {
+                @Override
+                public void onUpdate(@NonNull final FlightControllerState flightControllerState) {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            float alt = flightControllerState.getHomePointAltitude();
+                            float velx = flightControllerState.getVelocityX();
+                            float vely = flightControllerState.getVelocityY();
+                            float velz = flightControllerState.getVelocityZ();
+                            float ush = flightControllerState.getUltrasonicHeightInMeters();
+                            mTextView.setText("Altitude : " + alt + ", Vel : " + velx + "," + vely + "," + velz + "\n" + ", USH : " + ush);
+                        }
+                    });
+                }
+
+            });
             mFlightController.getSimulator().setStateCallback(new SimulatorState.Callback() {
                 @Override
                 public void onUpdate(final SimulatorState stateData) {
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-
                             String yaw = String.format("%.2f", stateData.getYaw());
                             String pitch = String.format("%.2f", stateData.getPitch());
                             String roll = String.format("%.2f", stateData.getRoll());
@@ -360,7 +377,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 } else {
 
                     mTextView.setVisibility(View.INVISIBLE);
-
                     if (mFlightController != null) {
                         mFlightController.getSimulator()
                                 .stop(new CommonCallbacks.CompletionCallback() {

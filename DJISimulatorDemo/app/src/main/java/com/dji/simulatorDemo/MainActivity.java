@@ -535,6 +535,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    // VirtualFlightControlDataに入力
+    // https://developer.dji.com/iframe/mobile-sdk-doc/android/reference/dji/common/flightcontroller/DJIVirtualStickFlightControlData.html
+
     class SendVirtualStickDataTask extends TimerTask {
 
         @Override

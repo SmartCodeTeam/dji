@@ -73,10 +73,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static final int REQUEST_PERMISSION_CODE = 12345;
 
     //以下のパラメータでスピードを変更
-    private static final float PITCH_CONTROLL_SPEED = 5;
-    private static final float ROLL_CONTROLL_SPEED = 5;
-    private static final float YAW_CONTROLL_SPEED = 5;
-    private static final float VERTICAL_THROTTLE_SPEED = 1;
+    private static final float PITCH_CONTROLL_SPEED = 0.2f;
+    private static final float ROLL_CONTROLL_SPEED = 0.2f;
+    private static final float YAW_CONTROLL_SPEED = 0.5f;
+    private static final float VERTICAL_THROTTLE_SPEED = 0.2f;
 
 
     private FlightController mFlightController;
@@ -582,11 +582,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.up:
-                setFlightControllerData(0,0,0,-VERTICAL_THROTTLE_SPEED);
+                setFlightControllerData(0,0,0,VERTICAL_THROTTLE_SPEED);
 
                 break;
             case R.id.down:
-                setFlightControllerData(0,0,0,VERTICAL_THROTTLE_SPEED);
+                setFlightControllerData(0,0,0,-VERTICAL_THROTTLE_SPEED);
 
                 break;
 

@@ -581,43 +581,51 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.right:
                 setFlightControllerData(0,0,ROLL_CONTROLL_SPEED,0);
+                showToast("RIGHT");
                 break;
 
             case R.id.left:
                 setFlightControllerData(0,0,-ROLL_CONTROLL_SPEED,0);
+                showToast("LEFT");
                 break;
 
             case R.id.forward:
                 setFlightControllerData(0,-PITCH_CONTROLL_SPEED,0,0);
+                showToast("FORWARD");
 
                 break;
 
             case R.id.back:
                 setFlightControllerData(0,PITCH_CONTROLL_SPEED,0,0);
+                showToast("BACK");
 
                 break;
 
             case R.id.up:
                 setFlightControllerData(0,0,0,VERTICAL_THROTTLE_SPEED);
+                showToast("UP");
 
                 break;
             case R.id.down:
                 setFlightControllerData(0,0,0,-VERTICAL_THROTTLE_SPEED);
-
+                showToast("DOWN");
                 break;
 
             case R.id.turn_left:
                 setFlightControllerData(-YAW_CONTROLL_SPEED,0,0,0);
+                showToast("TURN_LEFT");
 
                 break;
 
             case R.id.turn_right:
                 setFlightControllerData(YAW_CONTROLL_SPEED,0,0,0);
+                showToast("TURN_RIGHT");
 
                 break;
 
             case R.id.pause:
                 setFlightControllerData(0,0,0,0);
+                showToast("PAUSE");
 
                 break;
 

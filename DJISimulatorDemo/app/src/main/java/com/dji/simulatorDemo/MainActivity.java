@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -71,6 +72,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private AtomicBoolean isRegistrationInProgress = new AtomicBoolean(false);
     private static final int REQUEST_PERMISSION_CODE = 12345;
 
+    private static final float PITCH_CONTROLL_SPEED = 5;
+    private static final float ROLL_CONTROLL_SPEED = 5;
+    private static final float YAW_CONTROLL_SPEED = 5;
+    private static final float VERTICAL_THROTTLE_SPEED = 1;
+
+
     private FlightController mFlightController;
     protected TextView mConnectStatusTextView;
     private Button mBtnEnableVirtualStick;
@@ -78,11 +85,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ToggleButton mBtnSimulator;
     private Button mBtnTakeOff;
     private Button mBtnLand;
+    private ImageButton mBtnRight;
+    private ImageButton mBtnLeft;
+    private ImageButton mBtnForward;
+    private ImageButton mBtnBack;
+    private ImageButton mBtnUp;
+    private ImageButton mBtnDown;
 
     private TextView mTextView;
-
-    private OnScreenJoystick mScreenJoystickRight;
-    private OnScreenJoystick mScreenJoystickLeft;
 
     private Timer mSendVirtualStickDataTimer;
     private SendVirtualStickDataTask mSendVirtualStickDataTask;
@@ -91,6 +101,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private float mRoll;
     private float mYaw;
     private float mThrottle;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +158,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (missingPermission.isEmpty()) {
             startSDKRegistration();
         } else {
-            showToast("Missing permissions!!!");
+            showToast("パーミッションが足りていません。");
         }
     }
 
@@ -155,16 +167,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    showToast("registering, pls wait...");
+                    showToast("登録中です。 少しお待ちください...");
                     DJISDKManager.getInstance().registerApp(getApplicationContext(), new DJISDKManager.SDKManagerCallback() {
                         @Override
                         public void onRegister(DJIError djiError) {
                             if (djiError == DJISDKError.REGISTRATION_SUCCESS) {
                                 DJILog.e("App registration", DJISDKError.REGISTRATION_SUCCESS.getDescription());
                                 DJISDKManager.getInstance().startConnectionToProduct();
-                                showToast("Register Success");
+                                showToast("登録が完了しました。");
                             } else {
-                                showToast("Register sdk fails, check network is available");
+                                showToast("sdkの登録に失敗しました。ネットワークを確認してください。");
                             }
                             Log.v(TAG, djiError.getDescription());
                         }
@@ -269,12 +281,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 new CommonCallbacks.CompletionCallbackWith<UserAccountState>() {
                     @Override
                     public void onSuccess(final UserAccountState userAccountState) {
-                        Log.e(TAG, "Login Success");
+                        Log.e(TAG, "ログイン");
                     }
 
                     @Override
                     public void onFailure(DJIError error) {
-                        showToast("Login Error:"
+                        showToast("ログインエラー:"
                                 + error.getDescription());
                     }
                 });
@@ -284,7 +296,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         Aircraft aircraft = DJISimulatorApplication.getAircraftInstance();
         if (aircraft == null || !aircraft.isConnected()) {
-            showToast("Disconnected");
+            showToast("接続解除");
             mFlightController = null;
             return;
         } else {
@@ -323,23 +335,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnDisableVirtualStick = (Button) findViewById(R.id.btn_disable_virtual_stick);
         mBtnTakeOff = (Button) findViewById(R.id.btn_take_off);
         mBtnLand = (Button) findViewById(R.id.btn_land);
+        mBtnRight = (ImageButton) findViewById(R.id.right);
+        mBtnLeft = (ImageButton) findViewById(R.id.left);
+        mBtnForward = (ImageButton) findViewById(R.id.forward);
+        mBtnBack = (ImageButton) findViewById(R.id.back);
+        mBtnUp = (ImageButton) findViewById(R.id.up);
+        mBtnDown = (ImageButton) findViewById(R.id.down);
+
+
         mBtnSimulator = (ToggleButton) findViewById(R.id.btn_start_simulator);
         mTextView = (TextView) findViewById(R.id.textview_simulator);
         mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
-        mScreenJoystickRight = (OnScreenJoystick) findViewById(R.id.directionJoystickRight);
-        mScreenJoystickLeft = (OnScreenJoystick) findViewById(R.id.directionJoystickLeft);
+
 
         mBtnEnableVirtualStick.setOnClickListener(this);
         mBtnDisableVirtualStick.setOnClickListener(this);
         mBtnTakeOff.setOnClickListener(this);
         mBtnLand.setOnClickListener(this);
+        mBtnRight.setOnClickListener(this);
+        mBtnLeft.setOnClickListener(this);
+        mBtnForward.setOnClickListener(this);
+        mBtnBack.setOnClickListener(this);
+        mBtnUp.setOnClickListener(this);
+        mBtnDown.setOnClickListener(this);
+
 
         mBtnSimulator.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
 
-                    mTextView.setVisibility(View.VISIBLE);
+                    mTextView.setVisibility(View.GONE);
 
                     if (mFlightController != null) {
 
@@ -351,7 +377,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                                 if (djiError != null) {
                                                     showToast(djiError.getDescription());
                                                 } else {
-                                                    showToast("Start Simulator Success");
+                                                    showToast("シュミレータ起動");
                                                 }
                                             }
                                         });
@@ -369,7 +395,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                               if (djiError != null) {
                                                   showToast(djiError.getDescription());
                                               } else {
-                                                  showToast("Stop Simulator Success");
+                                                  showToast("シュミレータ終了");
                                               }
                                           }
                                       }
@@ -379,61 +405,61 @@ public class MainActivity extends Activity implements View.OnClickListener {
             }
         });
 
-        mScreenJoystickRight.setJoystickListener(new OnScreenJoystickListener() {
+//        mScreenJoystickRight.setJoystickListener(new OnScreenJoystickListener() {
+//
+//            @Override
+//            public void onTouch(OnScreenJoystick joystick, float pX, float pY) {
+//                if (Math.abs(pX) < 0.02) {
+//                    pX = 0;
+//                }
+//
+//                if (Math.abs(pY) < 0.02) {
+//                    pY = 0;
+//                }
+//
+//                float pitchJoyControlMaxSpeed = 10;
+//                float rollJoyControlMaxSpeed = 10;
+//
+//                mPitch = (float) (pitchJoyControlMaxSpeed * pX);
+//
+//                mRoll = (float) (rollJoyControlMaxSpeed * pY);
+//
+//                if (null == mSendVirtualStickDataTimer) {
+//                    mSendVirtualStickDataTask = new SendVirtualStickDataTask();
+//                    mSendVirtualStickDataTimer = new Timer();
+//                    mSendVirtualStickDataTimer.schedule(mSendVirtualStickDataTask, 100, 200);
+//                }
+//
+//            }
+//
+//        });
 
-            @Override
-            public void onTouch(OnScreenJoystick joystick, float pX, float pY) {
-                if (Math.abs(pX) < 0.02) {
-                    pX = 0;
-                }
 
-                if (Math.abs(pY) < 0.02) {
-                    pY = 0;
-                }
-
-                float pitchJoyControlMaxSpeed = 10;
-                float rollJoyControlMaxSpeed = 10;
-
-                mPitch = (float) (pitchJoyControlMaxSpeed * pX);
-
-                mRoll = (float) (rollJoyControlMaxSpeed * pY);
-
-                if (null == mSendVirtualStickDataTimer) {
-                    mSendVirtualStickDataTask = new SendVirtualStickDataTask();
-                    mSendVirtualStickDataTimer = new Timer();
-                    mSendVirtualStickDataTimer.schedule(mSendVirtualStickDataTask, 100, 200);
-                }
-
-            }
-
-        });
-
-
-        mScreenJoystickLeft.setJoystickListener(new OnScreenJoystickListener() {
-
-            @Override
-            public void onTouch(OnScreenJoystick joystick, float pX, float pY) {
-                if (Math.abs(pX) < 0.02) {
-                    pX = 0;
-                }
-
-                if (Math.abs(pY) < 0.02) {
-                    pY = 0;
-                }
-                float verticalJoyControlMaxSpeed = 2;
-                float yawJoyControlMaxSpeed = 30;
-
-                mYaw = (float) (yawJoyControlMaxSpeed * pX);
-                mThrottle = (float) (verticalJoyControlMaxSpeed * pY);
-
-                if (null == mSendVirtualStickDataTimer) {
-                    mSendVirtualStickDataTask = new SendVirtualStickDataTask();
-                    mSendVirtualStickDataTimer = new Timer();
-                    mSendVirtualStickDataTimer.schedule(mSendVirtualStickDataTask, 0, 200);
-                }
-
-            }
-        });
+//        mScreenJoystickLeft.setJoystickListener(new OnScreenJoystickListener() {
+//
+//            @Override
+//            public void onTouch(OnScreenJoystick joystick, float pX, float pY) {
+//                if (Math.abs(pX) < 0.02) {
+//                    pX = 0;
+//                }
+//
+//                if (Math.abs(pY) < 0.02) {
+//                    pY = 0;
+//                }
+//                float verticalJoyControlMaxSpeed = 2;
+//                float yawJoyControlMaxSpeed = 30;
+//
+//                mYaw = (float) (yawJoyControlMaxSpeed * pX);
+//                mThrottle = (float) (verticalJoyControlMaxSpeed * pY);
+//
+//                if (null == mSendVirtualStickDataTimer) {
+//                    mSendVirtualStickDataTask = new SendVirtualStickDataTask();
+//                    mSendVirtualStickDataTimer = new Timer();
+//                    mSendVirtualStickDataTimer.schedule(mSendVirtualStickDataTask, 0, 200);
+//                }
+//
+//            }
+//        });
 
     }
 
@@ -471,7 +497,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 showToast(djiError.getDescription());
                             }else
                             {
-                                showToast("Enable Virtual Stick Success");
+                                showToast("バーチャルスティックを有効化しました。");
                             }
                         }
                     });
@@ -488,7 +514,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             if (djiError != null) {
                                 showToast(djiError.getDescription());
                             } else {
-                                showToast("Disable Virtual Stick Success");
+                                showToast("バーチャルスティックを無効にしました。");
                             }
                         }
                     });
@@ -504,7 +530,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     if (djiError != null) {
                                         showToast(djiError.getDescription());
                                     } else {
-                                        showToast("Take off Success");
+                                        showToast("テイクオフ!!!!!!!!!!!!!!!!!");
                                     }
                                 }
                             }
@@ -523,7 +549,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     if (djiError != null) {
                                         showToast(djiError.getDescription());
                                     } else {
-                                        showToast("Start Landing");
+                                        showToast("着陸を開始しました。");
                                     }
                                 }
                             }
@@ -534,42 +560,41 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.right:
-                setFlightControllerData(0,0,1,0.1f);
+                setFlightControllerData(0,0,ROLL_CONTROLL_SPEED,0);
                 break;
 
-//            case R.id.left:
-//                setFlightControllerData(0,0,-1,0.1f);
-//                break;
-//
-//            case R.id.forward:
-//                setFlightControllerData(0,1,0,0.1f);
-//
-//                break;
-//
-//            case R.id.back:
-//                setFlightControllerData(0,-1,0,0.1f);
-//
-//                break;
-//
-//            case R.id.up:
-//                setFlightControllerData(0,-1,0,0.1f);
-//
-//                break;
-//            case R.id.down:
-//                setFlightControllerData(0,-1,0,-0.1f);
-//
-//                break;
-//
-//            case R.id.turn_left:
-//                setFlightControllerData(1,0,0,0.1f);
-//
-//                break;
-//
-//            case R.id.turn_right:
-//                setFlightControllerData(-1,0,0,0.1f);
-//
-//                break;
+            case R.id.left:
+                setFlightControllerData(0,0,-ROLL_CONTROLL_SPEED,0);
+                break;
 
+            case R.id.forward:
+                setFlightControllerData(0,-PITCH_CONTROLL_SPEED,0,0);
+
+                break;
+
+            case R.id.back:
+                setFlightControllerData(0,PITCH_CONTROLL_SPEED,0,0);
+
+                break;
+
+            case R.id.up:
+                setFlightControllerData(0,0,0,-VERTICAL_THROTTLE_SPEED);
+
+                break;
+            case R.id.down:
+                setFlightControllerData(0,0,0,VERTICAL_THROTTLE_SPEED);
+
+                break;
+
+            case R.id.turn_left:
+                setFlightControllerData(-YAW_CONTROLL_SPEED,0,0,0);
+
+                break;
+
+            case R.id.turn_right:
+                setFlightControllerData(YAW_CONTROLL_SPEED,0,0,0);
+
+                break;
 
             default:
                 break;

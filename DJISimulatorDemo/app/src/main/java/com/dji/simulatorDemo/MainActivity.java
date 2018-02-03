@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -78,6 +79,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ToggleButton mBtnSimulator;
     private Button mBtnTakeOff;
     private Button mBtnLand;
+    private ImageButton mBtnRight;
+    private ImageButton mBtnLeft;
+    private ImageButton mBtnForward;
+    private ImageButton mBtnBack;
+    private ImageButton mBtnUp;
+    private ImageButton mBtnDown;
 
     private TextView mTextView;
 
@@ -91,6 +98,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private float mRoll;
     private float mYaw;
     private float mThrottle;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -323,6 +332,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnDisableVirtualStick = (Button) findViewById(R.id.btn_disable_virtual_stick);
         mBtnTakeOff = (Button) findViewById(R.id.btn_take_off);
         mBtnLand = (Button) findViewById(R.id.btn_land);
+        mBtnRight = (ImageButton) findViewById(R.id.right);
+        mBtnLeft = (ImageButton) findViewById(R.id.left);
+        mBtnForward = (ImageButton) findViewById(R.id.forward);
+        mBtnBack = (ImageButton) findViewById(R.id.back);
+        mBtnUp = (ImageButton) findViewById(R.id.up);
+        mBtnDown = (ImageButton) findViewById(R.id.down);
+
+
         mBtnSimulator = (ToggleButton) findViewById(R.id.btn_start_simulator);
         mTextView = (TextView) findViewById(R.id.textview_simulator);
         mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
@@ -333,6 +350,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnDisableVirtualStick.setOnClickListener(this);
         mBtnTakeOff.setOnClickListener(this);
         mBtnLand.setOnClickListener(this);
+        mBtnRight.setOnClickListener(this);
+        mBtnLeft.setOnClickListener(this);
+        mBtnForward.setOnClickListener(this);
+        mBtnBack.setOnClickListener(this);
+        mBtnUp.setOnClickListener(this);
+        mBtnDown.setOnClickListener(this);
+
 
         mBtnSimulator.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -534,41 +558,41 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.right:
-                setFlightControllerData(0,0,1,0.1f);
+                setFlightControllerData(0,0,10,0);
                 break;
 
-//            case R.id.left:
-//                setFlightControllerData(0,0,-1,0.1f);
-//                break;
-//
-//            case R.id.forward:
-//                setFlightControllerData(0,1,0,0.1f);
-//
-//                break;
-//
-//            case R.id.back:
-//                setFlightControllerData(0,-1,0,0.1f);
-//
-//                break;
-//
-//            case R.id.up:
-//                setFlightControllerData(0,-1,0,0.1f);
-//
-//                break;
-//            case R.id.down:
-//                setFlightControllerData(0,-1,0,-0.1f);
-//
-//                break;
-//
-//            case R.id.turn_left:
-//                setFlightControllerData(1,0,0,0.1f);
-//
-//                break;
-//
-//            case R.id.turn_right:
-//                setFlightControllerData(-1,0,0,0.1f);
-//
-//                break;
+            case R.id.left:
+                setFlightControllerData(0,0,-10,0);
+                break;
+
+            case R.id.forward:
+                setFlightControllerData(0,-10,0,0);
+
+                break;
+
+            case R.id.back:
+                setFlightControllerData(0,10,0,0);
+
+                break;
+
+            case R.id.up:
+                setFlightControllerData(0,0,0,-10);
+
+                break;
+            case R.id.down:
+                setFlightControllerData(0,-1,0,10);
+
+                break;
+
+            case R.id.turn_left:
+                setFlightControllerData(-10,0,0,0);
+
+                break;
+
+            case R.id.turn_right:
+                setFlightControllerData(10,0,0,0);
+
+                break;
 
 
             default:

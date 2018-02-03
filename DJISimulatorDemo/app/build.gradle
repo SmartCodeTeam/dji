@@ -6,9 +6,9 @@ android {
 
     defaultConfig {
 
-//        ndk {
-//            abiFilters 'armeabi-v7a'
-//        }
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
         applicationId "com.dji.simulatorDemo"
         minSdkVersion 19
         targetSdkVersion 23

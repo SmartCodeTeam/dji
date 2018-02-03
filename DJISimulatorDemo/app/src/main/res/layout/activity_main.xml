@@ -131,36 +131,36 @@
         android:layout_marginRight="100dp"
         android:text="Right"/>
 
+    <!--&lt;!&ndash;<Button&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/button2"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_alignParentStart="true"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_alignParentTop="true"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginStart="252dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginLeft="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="700dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="Left"/>&ndash;&gt;-->
+
     <!--<Button-->
-        <!--android:id="@+id/button2"-->
+        <!--android:id="@+id/button3"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_alignParentStart="true"-->
         <!--android:layout_alignParentTop="true"-->
         <!--android:layout_marginStart="252dp"-->
-        <!--android:layout_marginLeft="100dp"-->
-        <!--android:layout_marginTop="700dp"-->
-        <!--android:text="Left"/>-->
+        <!--android:layout_marginTop="600dp"-->
+        <!--android:text="FORWARD"/>-->
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="600dp"
-        android:text="FORWARD"/>
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="800dp"
-        android:text="BACK"/>
+    <!--<Button-->
+        <!--android:id="@+id/button4"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginStart="252dp"-->
+        <!--android:layout_marginTop="800dp"-->
+        <!--android:text="BACK"/>-->
 
 
 </RelativeLayout>

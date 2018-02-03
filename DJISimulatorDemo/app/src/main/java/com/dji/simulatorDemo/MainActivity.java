@@ -537,38 +537,38 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 setFlightControllerData(0,0,1,0.1f);
                 break;
 
-            case R.id.left:
-                setFlightControllerData(0,0,-1,0.1f);
-                break;
-
-            case R.id.forward:
-                setFlightControllerData(0,1,0,0.1f);
-
-                break;
-
-            case R.id.back:
-                setFlightControllerData(0,-1,0,0.1f);
-
-                break;
-
-            case R.id.up:
-                setFlightControllerData(0,-1,0,0.1f);
-
-                break;
-            case R.id.down:
-                setFlightControllerData(0,-1,0,-0.1f);
-
-                break;
-
-            case R.id.turn_left:
-                setFlightControllerData(1,0,0,0.1f);
-
-                break;
-
-            case R.id.turn_right:
-                setFlightControllerData(-1,0,0,0.1f);
-
-                break;
+//            case R.id.left:
+//                setFlightControllerData(0,0,-1,0.1f);
+//                break;
+//
+//            case R.id.forward:
+//                setFlightControllerData(0,1,0,0.1f);
+//
+//                break;
+//
+//            case R.id.back:
+//                setFlightControllerData(0,-1,0,0.1f);
+//
+//                break;
+//
+//            case R.id.up:
+//                setFlightControllerData(0,-1,0,0.1f);
+//
+//                break;
+//            case R.id.down:
+//                setFlightControllerData(0,-1,0,-0.1f);
+//
+//                break;
+//
+//            case R.id.turn_left:
+//                setFlightControllerData(1,0,0,0.1f);
+//
+//                break;
+//
+//            case R.id.turn_right:
+//                setFlightControllerData(-1,0,0,0.1f);
+//
+//                break;
 
 
             default:

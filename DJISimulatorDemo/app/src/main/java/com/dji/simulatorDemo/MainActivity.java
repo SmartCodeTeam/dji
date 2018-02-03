@@ -18,7 +18,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,14 +31,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
-import dji.common.flightcontroller.simulator.InitializationData;
 import dji.common.flightcontroller.simulator.SimulatorState;
 import dji.common.flightcontroller.virtualstick.FlightControlData;
 import dji.common.flightcontroller.virtualstick.FlightCoordinateSystem;
 import dji.common.flightcontroller.virtualstick.RollPitchControlMode;
 import dji.common.flightcontroller.virtualstick.VerticalControlMode;
 import dji.common.flightcontroller.virtualstick.YawControlMode;
-import dji.common.model.LocationCoordinate2D;
 import dji.common.useraccount.UserAccountState;
 import dji.common.util.CommonCallbacks;
 import dji.log.DJILog;
@@ -93,9 +90,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageButton mBtnDown;
 
     private TextView mTextView;
-
-    private OnScreenJoystick mScreenJoystickRight;
-    private OnScreenJoystick mScreenJoystickLeft;
 
     private Timer mSendVirtualStickDataTimer;
     private SendVirtualStickDataTask mSendVirtualStickDataTask;
@@ -349,8 +343,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnSimulator = (ToggleButton) findViewById(R.id.btn_start_simulator);
         mTextView = (TextView) findViewById(R.id.textview_simulator);
         mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
-        mScreenJoystickRight = (OnScreenJoystick) findViewById(R.id.directionJoystickRight);
-        mScreenJoystickLeft = (OnScreenJoystick) findViewById(R.id.directionJoystickLeft);
 
         mBtnEnableVirtualStick.setOnClickListener(this);
         mBtnDisableVirtualStick.setOnClickListener(this);

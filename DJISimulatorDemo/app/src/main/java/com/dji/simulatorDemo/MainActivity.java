@@ -382,7 +382,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
 
-                    mTextView.setVisibility(View.GONE);
+                    mTextView.setVisibility(View.VISIBLE);
 
                     if (mFlightController != null) {
 

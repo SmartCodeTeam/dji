@@ -72,6 +72,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private AtomicBoolean isRegistrationInProgress = new AtomicBoolean(false);
     private static final int REQUEST_PERMISSION_CODE = 12345;
 
+    //以下のパラメータでスピードを変更
     private static final float PITCH_CONTROLL_SPEED = 5;
     private static final float ROLL_CONTROLL_SPEED = 5;
     private static final float YAW_CONTROLL_SPEED = 5;
@@ -91,6 +92,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageButton mBtnBack;
     private ImageButton mBtnUp;
     private ImageButton mBtnDown;
+    private ImageButton mBtnPause;
 
     private TextView mTextView;
 
@@ -341,6 +343,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnBack = (ImageButton) findViewById(R.id.back);
         mBtnUp = (ImageButton) findViewById(R.id.up);
         mBtnDown = (ImageButton) findViewById(R.id.down);
+        mBtnPause = (ImageButton) findViewById(R.id.pause);
 
 
         mBtnSimulator = (ToggleButton) findViewById(R.id.btn_start_simulator);
@@ -358,6 +361,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnBack.setOnClickListener(this);
         mBtnUp.setOnClickListener(this);
         mBtnDown.setOnClickListener(this);
+        mBtnPause.setOnClickListener(this);
 
 
         mBtnSimulator.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -593,6 +597,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.turn_right:
                 setFlightControllerData(YAW_CONTROLL_SPEED,0,0,0);
+
+                break;
+
+            case R.id.pause:
+                setFlightControllerData(0,0,0,0);
 
                 break;
 

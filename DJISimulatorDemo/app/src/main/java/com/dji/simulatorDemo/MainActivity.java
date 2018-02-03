@@ -72,6 +72,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private AtomicBoolean isRegistrationInProgress = new AtomicBoolean(false);
     private static final int REQUEST_PERMISSION_CODE = 12345;
 
+    private static final float PITCH_CONTROLL_SPEED = 5;
+    private static final float ROLL_CONTROLL_SPEED = 5;
+    private static final float YAW_CONTROLL_SPEED = 5;
+    private static final float VERTICAL_THROTTLE_SPEED = 1;
+
+
     private FlightController mFlightController;
     protected TextView mConnectStatusTextView;
     private Button mBtnEnableVirtualStick;
@@ -558,39 +564,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.right:
-                setFlightControllerData(0,0,10,0);
+                setFlightControllerData(0,0,ROLL_CONTROLL_SPEED,0);
                 break;
 
             case R.id.left:
-                setFlightControllerData(0,0,-10,0);
+                setFlightControllerData(0,0,-ROLL_CONTROLL_SPEED,0);
                 break;
 
             case R.id.forward:
-                setFlightControllerData(0,-10,0,0);
+                setFlightControllerData(0,-PITCH_CONTROLL_SPEED,0,0);
 
                 break;
 
             case R.id.back:
-                setFlightControllerData(0,10,0,0);
+                setFlightControllerData(0,PITCH_CONTROLL_SPEED,0,0);
 
                 break;
 
             case R.id.up:
-                setFlightControllerData(0,0,0,-10);
+                setFlightControllerData(0,0,0,-VERTICAL_THROTTLE_SPEED);
 
                 break;
             case R.id.down:
-                setFlightControllerData(0,-1,0,10);
+                setFlightControllerData(0,0,0,VERTICAL_THROTTLE_SPEED);
 
                 break;
 
             case R.id.turn_left:
-                setFlightControllerData(-10,0,0,0);
+                setFlightControllerData(-YAW_CONTROLL_SPEED,0,0,0);
 
                 break;
 
             case R.id.turn_right:
-                setFlightControllerData(10,0,0,0);
+                setFlightControllerData(YAW_CONTROLL_SPEED,0,0,0);
 
                 break;
 

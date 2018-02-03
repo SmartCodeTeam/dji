@@ -68,41 +68,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dji/simulatorDemo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+            <state relative-caret-position="422">
+              <caret line="163" column="45" lean-forward="false" selection-start-line="163" selection-start-column="23" selection-end-line="163" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6157#7466#0" expanded="true" />
-                <element signature="e#7465#7466#0" expanded="true" />
-                <element signature="e#7530#7684#0" expanded="true" />
-                <element signature="e#7683#7684#0" expanded="true" />
-                <element signature="e#7755#7910#0" expanded="true" />
-                <element signature="e#7909#7910#0" expanded="true" />
-                <element signature="e#11394#12572#0" expanded="true" />
-                <element signature="e#11584#12538#0" expanded="true" />
-                <element signature="e#12537#12538#0" expanded="true" />
-                <element signature="e#12571#12572#0" expanded="true" />
-                <element signature="e#14207#16327#0" expanded="true" />
-                <element signature="e#14727#15356#0" expanded="true" />
-                <element signature="e#15355#15356#0" expanded="true" />
-                <element signature="e#15618#16228#0" expanded="true" />
-                <element signature="e#16227#16228#0" expanded="true" />
-                <element signature="e#16326#16327#0" expanded="true" />
-                <element signature="e#16380#17268#0" expanded="true" />
-                <element signature="e#17267#17268#0" expanded="true" />
-                <element signature="e#17321#18209#0" expanded="true" />
-                <element signature="e#18208#18209#0" expanded="true" />
-                <element signature="e#19002#19482#0" expanded="true" />
-                <element signature="e#19481#19482#0" expanded="true" />
-                <element signature="e#19698#20153#0" expanded="true" />
-                <element signature="e#20152#20153#0" expanded="true" />
-                <element signature="e#20362#20876#0" expanded="true" />
-                <element signature="e#20875#20876#0" expanded="true" />
-                <element signature="e#21104#21615#0" expanded="true" />
-                <element signature="e#21614#21615#0" expanded="true" />
+                <element signature="e#6387#7696#0" expanded="true" />
+                <element signature="e#7695#7696#0" expanded="true" />
+                <element signature="e#7760#7914#0" expanded="true" />
+                <element signature="e#7913#7914#0" expanded="true" />
+                <element signature="e#7985#8140#0" expanded="true" />
+                <element signature="e#8139#8140#0" expanded="true" />
+                <element signature="e#11624#12802#0" expanded="true" />
+                <element signature="e#11814#12768#0" expanded="true" />
+                <element signature="e#12767#12768#0" expanded="true" />
+                <element signature="e#12801#12802#0" expanded="true" />
+                <element signature="e#14437#16557#0" expanded="true" />
+                <element signature="e#14957#15586#0" expanded="true" />
+                <element signature="e#15585#15586#0" expanded="true" />
+                <element signature="e#15848#16458#0" expanded="true" />
+                <element signature="e#16457#16458#0" expanded="true" />
+                <element signature="e#16556#16557#0" expanded="true" />
+                <element signature="e#16610#17498#0" expanded="true" />
+                <element signature="e#17497#17498#0" expanded="true" />
+                <element signature="e#17551#18439#0" expanded="true" />
+                <element signature="e#18438#18439#0" expanded="true" />
+                <element signature="e#19232#19712#0" expanded="true" />
+                <element signature="e#19711#19712#0" expanded="true" />
+                <element signature="e#19928#20383#0" expanded="true" />
+                <element signature="e#20382#20383#0" expanded="true" />
+                <element signature="e#20592#21106#0" expanded="true" />
+                <element signature="e#21105#21106#0" expanded="true" />
+                <element signature="e#21334#21845#0" expanded="true" />
+                <element signature="e#21844#21845#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,7 +128,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider editor-type-id="android-designer2">
             <state />
@@ -199,12 +199,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mYaw</find>
-      <find>SendVirtualStickDataTask</find>
-      <find>startSdk</find>
-      <find>mReceive</find>
-      <find>0.02</find>
-      <find>joYstickleft.</find>
       <find>joYstickleft</find>
       <find>joYstickright</find>
       <find>start</find>
@@ -218,10 +212,7 @@
       <find>msendVirtualStickDatatimer</find>
       <find>id</find>
       <find>mRoll</find>
-      <find>set</find>
       <find>mThrottle</find>
-      <find>setFlight</find>
-      <find>throttle</find>
       <find>button</find>
       <find>setflight</find>
       <find>off</find>
@@ -229,6 +220,15 @@
       <find>mBtn</find>
       <find>.id</find>
       <find>left</find>
+      <find>mBtnRight</find>
+      <find>up</find>
+      <find>l</find>
+      <find>max</find>
+      <find>pitch</find>
+      <find>throttle</find>
+      <find>final</find>
+      <find>set</find>
+      <find>setFlight</find>
     </findStrings>
     <replaceStrings>
       <replace>setFlightControllerData</replace>
@@ -2136,8 +2136,8 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/dji/simulatorDemo/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/dji/simulatorDemo/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2355,7 +2355,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1517647752764" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1517648559368" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2403,7 +2403,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1517647752765" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1517648559368" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2597,7 +2597,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1517647752768" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1517648559370" />
       </method>
     </configuration>
     <list size="1">
@@ -2643,6 +2643,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838285" sideWeight="0.49434572" order="6" side_tool="false" content_ui="tabs" />
@@ -2655,11 +2656,11 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4738562" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.52549577" sideWeight="0.44830373" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.44830373" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838285" sideWeight="0.47738287" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.52549577" sideWeight="0.5516963" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5516963" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26171243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3032,44 +3033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dji/simulatorDemo/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6157#7466#0" expanded="true" />
-            <element signature="e#7465#7466#0" expanded="true" />
-            <element signature="e#7530#7684#0" expanded="true" />
-            <element signature="e#7683#7684#0" expanded="true" />
-            <element signature="e#7755#7910#0" expanded="true" />
-            <element signature="e#7909#7910#0" expanded="true" />
-            <element signature="e#11394#12572#0" expanded="true" />
-            <element signature="e#11584#12538#0" expanded="true" />
-            <element signature="e#12537#12538#0" expanded="true" />
-            <element signature="e#12571#12572#0" expanded="true" />
-            <element signature="e#14207#16327#0" expanded="true" />
-            <element signature="e#14727#15356#0" expanded="true" />
-            <element signature="e#15355#15356#0" expanded="true" />
-            <element signature="e#15618#16228#0" expanded="true" />
-            <element signature="e#16227#16228#0" expanded="true" />
-            <element signature="e#16326#16327#0" expanded="true" />
-            <element signature="e#16380#17268#0" expanded="true" />
-            <element signature="e#17267#17268#0" expanded="true" />
-            <element signature="e#17321#18209#0" expanded="true" />
-            <element signature="e#18208#18209#0" expanded="true" />
-            <element signature="e#19002#19482#0" expanded="true" />
-            <element signature="e#19481#19482#0" expanded="true" />
-            <element signature="e#19698#20153#0" expanded="true" />
-            <element signature="e#20152#20153#0" expanded="true" />
-            <element signature="e#20362#20876#0" expanded="true" />
-            <element signature="e#20875#20876#0" expanded="true" />
-            <element signature="e#21104#21615#0" expanded="true" />
-            <element signature="e#21614#21615#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3078,6 +3041,44 @@
         <state relative-caret-position="-798">
           <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/dji/simulatorDemo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="163" column="45" lean-forward="false" selection-start-line="163" selection-start-column="23" selection-end-line="163" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6387#7696#0" expanded="true" />
+            <element signature="e#7695#7696#0" expanded="true" />
+            <element signature="e#7760#7914#0" expanded="true" />
+            <element signature="e#7913#7914#0" expanded="true" />
+            <element signature="e#7985#8140#0" expanded="true" />
+            <element signature="e#8139#8140#0" expanded="true" />
+            <element signature="e#11624#12802#0" expanded="true" />
+            <element signature="e#11814#12768#0" expanded="true" />
+            <element signature="e#12767#12768#0" expanded="true" />
+            <element signature="e#12801#12802#0" expanded="true" />
+            <element signature="e#14437#16557#0" expanded="true" />
+            <element signature="e#14957#15586#0" expanded="true" />
+            <element signature="e#15585#15586#0" expanded="true" />
+            <element signature="e#15848#16458#0" expanded="true" />
+            <element signature="e#16457#16458#0" expanded="true" />
+            <element signature="e#16556#16557#0" expanded="true" />
+            <element signature="e#16610#17498#0" expanded="true" />
+            <element signature="e#17497#17498#0" expanded="true" />
+            <element signature="e#17551#18439#0" expanded="true" />
+            <element signature="e#18438#18439#0" expanded="true" />
+            <element signature="e#19232#19712#0" expanded="true" />
+            <element signature="e#19711#19712#0" expanded="true" />
+            <element signature="e#19928#20383#0" expanded="true" />
+            <element signature="e#20382#20383#0" expanded="true" />
+            <element signature="e#20592#21106#0" expanded="true" />
+            <element signature="e#21105#21106#0" expanded="true" />
+            <element signature="e#21334#21845#0" expanded="true" />
+            <element signature="e#21844#21845#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

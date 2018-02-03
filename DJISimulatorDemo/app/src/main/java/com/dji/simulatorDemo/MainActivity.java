@@ -161,7 +161,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (missingPermission.isEmpty()) {
             startSDKRegistration();
         } else {
-            showToast("Missing permissions!!!");
+            showToast("パーミッションが足りていません。");
         }
     }
 
@@ -170,16 +170,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
-                    showToast("registering, pls wait...");
+                    showToast("登録中です。 少しお待ちください...");
                     DJISDKManager.getInstance().registerApp(getApplicationContext(), new DJISDKManager.SDKManagerCallback() {
                         @Override
                         public void onRegister(DJIError djiError) {
                             if (djiError == DJISDKError.REGISTRATION_SUCCESS) {
                                 DJILog.e("App registration", DJISDKError.REGISTRATION_SUCCESS.getDescription());
                                 DJISDKManager.getInstance().startConnectionToProduct();
-                                showToast("Register Success");
+                                showToast("登録が完了しました。");
                             } else {
-                                showToast("Register sdk fails, check network is available");
+                                showToast("sdkの登録に失敗しました。ネットワークを確認してください。");
                             }
                             Log.v(TAG, djiError.getDescription());
                         }
@@ -284,12 +284,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 new CommonCallbacks.CompletionCallbackWith<UserAccountState>() {
                     @Override
                     public void onSuccess(final UserAccountState userAccountState) {
-                        Log.e(TAG, "Login Success");
+                        Log.e(TAG, "ログイン");
                     }
 
                     @Override
                     public void onFailure(DJIError error) {
-                        showToast("Login Error:"
+                        showToast("ログインエラー:"
                                 + error.getDescription());
                     }
                 });
@@ -299,7 +299,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         Aircraft aircraft = DJISimulatorApplication.getAircraftInstance();
         if (aircraft == null || !aircraft.isConnected()) {
-            showToast("Disconnected");
+            showToast("接続解除");
             mFlightController = null;
             return;
         } else {
@@ -381,7 +381,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                                 if (djiError != null) {
                                                     showToast(djiError.getDescription());
                                                 } else {
-                                                    showToast("Start Simulator Success");
+                                                    showToast("シュミレータ起動");
                                                 }
                                             }
                                         });
@@ -399,7 +399,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                               if (djiError != null) {
                                                   showToast(djiError.getDescription());
                                               } else {
-                                                  showToast("Stop Simulator Success");
+                                                  showToast("シュミレータ終了");
                                               }
                                           }
                                       }
@@ -501,7 +501,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 showToast(djiError.getDescription());
                             }else
                             {
-                                showToast("Enable Virtual Stick Success");
+                                showToast("バーチャルスティックを有効化しました。");
                             }
                         }
                     });
@@ -518,7 +518,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             if (djiError != null) {
                                 showToast(djiError.getDescription());
                             } else {
-                                showToast("Disable Virtual Stick Success");
+                                showToast("バーチャルスティックを無効にしました。");
                             }
                         }
                     });
@@ -534,7 +534,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     if (djiError != null) {
                                         showToast(djiError.getDescription());
                                     } else {
-                                        showToast("Take off Success");
+                                        showToast("テイクオフ!!!!!!!!!!!!!!!!!");
                                     }
                                 }
                             }
@@ -553,7 +553,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                     if (djiError != null) {
                                         showToast(djiError.getDescription());
                                     } else {
-                                        showToast("Start Landing");
+                                        showToast("着陸を開始しました。");
                                     }
                                 }
                             }
@@ -599,7 +599,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 setFlightControllerData(YAW_CONTROLL_SPEED,0,0,0);
 
                 break;
-
 
             default:
                 break;

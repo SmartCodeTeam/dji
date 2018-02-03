@@ -556,7 +556,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //
 //                break;
 //            case R.id.down:
-//                setFlightControllerData(0,-1,0,0.1f);
+//                setFlightControllerData(0,-1,0,-0.1f);
 //
 //                break;
 //

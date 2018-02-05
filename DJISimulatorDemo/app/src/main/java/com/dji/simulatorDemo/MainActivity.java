@@ -94,6 +94,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageButton mBtnUp;
     private ImageButton mBtnDown;
     private ImageButton mBtnPause;
+    private ImageButton mBtnTurnRight;
+    private ImageButton mBtnTurnLeft;
 
     private TextView mTextView;
 
@@ -319,7 +321,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             float vely = flightControllerState.getVelocityY();
                             float velz = flightControllerState.getVelocityZ();
                             float ush = flightControllerState.getUltrasonicHeightInMeters();
-                            mTextView.setText("Altitude : " + alt + ", Vel : " + velx + "," + vely + "," + velz + "\n" + ", USH : " + ush);
+                            mTextView.setText("高度1 : " + alt  + "\n"+"高度2 : " + ush+"\n"+ "x速度 : " + velx +"\n"+ "y速度 : " + vely +"\n"+ "z速度 : " + velz);
                         }
                     });
                 }
@@ -361,6 +363,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnUp = (ImageButton) findViewById(R.id.up);
         mBtnDown = (ImageButton) findViewById(R.id.down);
         mBtnPause = (ImageButton) findViewById(R.id.pause);
+        mBtnTurnRight = (ImageButton) findViewById(R.id.turn_right);
+        mBtnTurnLeft = (ImageButton) findViewById(R.id.turn_left);
 
 
         mBtnSimulator = (ToggleButton) findViewById(R.id.btn_start_simulator);
@@ -379,6 +383,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBtnUp.setOnClickListener(this);
         mBtnDown.setOnClickListener(this);
         mBtnPause.setOnClickListener(this);
+        mBtnTurnRight.setOnClickListener(this);
+        mBtnTurnLeft.setOnClickListener(this);
 
 
         mBtnSimulator.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -522,6 +528,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         }
                     });
 
+                }else{
+                    showToast("機体が接続されていないか、コントローラを取得できていません。");
+
                 }
                 break;
 
@@ -538,6 +547,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             }
                         }
                     });
+                }else{
+                    showToast("機体が接続されていないか、コントローラを取得できていません。");
                 }
                 break;
 
@@ -555,6 +566,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 }
                             }
                     );
+                }else{
+                    showToast("機体が接続されていないか、コントローラを取得できていません。");
                 }
 
                 break;
@@ -575,6 +588,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             }
                     );
 
+                }else{
+                    showToast("機体が接続されていないか、コントローラを取得できていません。");
                 }
 
                 break;
@@ -614,13 +629,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.turn_left:
                 setFlightControllerData(-YAW_CONTROLL_SPEED,0,0,0);
                 showToast("TURN_LEFT");
-
                 break;
 
             case R.id.turn_right:
                 setFlightControllerData(YAW_CONTROLL_SPEED,0,0,0);
                 showToast("TURN_RIGHT");
-
                 break;
 
             case R.id.pause:

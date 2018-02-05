@@ -36,47 +36,51 @@
     </RelativeLayout>
 
     <TextView
-        android:layout_marginTop="70dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Simulator is off."
-        android:id="@+id/textview_simulator"/>
+        android:text="飛行情報"
+        android:id="@+id/textview_simulator"
+        android:textSize="20sp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="120dp"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enable Virtual Stick"
+        android:text="操作を有効化"
         style="@style/common_button"
         android:id="@+id/btn_enable_virtual_stick"
-        android:layout_marginLeft="5dp"
-        android:layout_alignTop="@+id/btn_start_simulator"
-        android:layout_alignStart="@+id/directionJoystickLeft"
-        android:layout_marginTop="0dp" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Disable Virtual Stick"
+        android:text="操作を無効化"
         style="@style/common_button"
         android:id="@+id/btn_disable_virtual_stick"
-        android:layout_below="@+id/btn_enable_virtual_stick"
-        android:layout_alignStart="@+id/btn_enable_virtual_stick"
-        android:layout_marginLeft="0dp"
-        android:layout_alignEnd="@+id/btn_enable_virtual_stick" />
+        android:layout_alignTop="@+id/btn_enable_virtual_stick"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/btn_enable_virtual_stick"
+        android:layout_marginLeft="10dp"
+    />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Take Off"
+        android:text="離陸"
         style="@style/common_button"
         android:id="@+id/btn_take_off"
         android:layout_alignTop="@+id/btn_disable_virtual_stick"
-        android:layout_alignStart="@+id/btn_start_simulator"
         android:layout_marginTop="0dp"
-        android:layout_alignEnd="@+id/btn_start_simulator" />
+        android:layout_toEndOf="@+id/btn_disable_virtual_stick"
+        android:layout_marginLeft="10dp" />
 
     <ToggleButton
+        android:visibility="gone"
         android:id="@+id/btn_start_simulator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,16 +96,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Land"
+        android:text="着陸"
         style="@style/common_button"
         android:id="@+id/btn_land"
         android:layout_alignTop="@+id/btn_take_off"
         android:layout_marginTop="0dp"
-        android:layout_alignEnd="@+id/directionJoystickRight"
         android:layout_toEndOf="@+id/btn_take_off"
         android:layout_marginLeft="10dp" />
 
+    <!--android:layout_alignTop="@+id/btn_take_off"-->
+    <!--android:layout_marginTop="0dp"-->
+    <!--android:layout_toEndOf="@+id/btn_take_off"-->
+    <!--android:layout_marginLeft="10dp"-->
     <com.dji.simulatorDemo.OnScreenJoystick
+        android:visibility="gone"
         android:id="@+id/directionJoystickLeft"
         android:layout_width="130dp"
         android:layout_height="130dp"
@@ -112,6 +120,7 @@
         android:background="@mipmap/joystick_bg"/>
 
     <com.dji.simulatorDemo.OnScreenJoystick
+        android:visibility="gone"
         android:id="@+id/directionJoystickRight"
         android:layout_width="130dp"
         android:layout_height="130dp"
@@ -128,9 +137,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="200dp"
-        android:background="@null"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="120dp"
         android:src="@drawable/up" />
 
     <ImageButton
@@ -139,9 +147,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="500dp"
-        android:background="@null"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="580dp"
         android:src="@drawable/down" />
 
     <ImageButton
@@ -150,9 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="350dp"
-        android:background="@null"
         android:src="@drawable/left" />
 
     <ImageButton
@@ -161,9 +167,8 @@
     android:layout_height="wrap_content"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
-    android:layout_marginStart="120dp"
+    android:layout_marginStart="240dp"
     android:layout_marginTop="350dp"
-    android:background="@null"
     android:src="@drawable/right" />
 
     <ImageButton
@@ -172,9 +177,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="500dp"
-        android:background="@null"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="580dp"
         android:src="@drawable/turn_left" />
 
     <ImageButton
@@ -183,9 +187,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="500dp"
-        android:background="@null"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="580dp"
         android:src="@drawable/turn_right" />
 
     <ImageButton
@@ -194,9 +197,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="300dp"
-        android:background="@null"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="240dp"
         android:src="@drawable/forward" />
 
     <ImageButton
@@ -205,9 +207,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="400dp"
-        android:background="@null"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="460dp"
         android:src="@drawable/back" />
 
     <ImageButton
@@ -216,7 +217,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="270dp"
+        android:layout_marginStart="400dp"
         android:layout_marginTop="350dp"
         android:src="@drawable/pause" />
 

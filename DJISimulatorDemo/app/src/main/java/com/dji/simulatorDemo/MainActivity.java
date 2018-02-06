@@ -310,6 +310,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mFlightController.setYawControlMode(YawControlMode.ANGULAR_VELOCITY);
             mFlightController.setVerticalControlMode(VerticalControlMode.VELOCITY);
             mFlightController.setRollPitchCoordinateSystem(FlightCoordinateSystem.BODY);
+            mFlightController.setOnboardSDKDeviceDataCallback(new FlightController.OnboardSDKDeviceDataCallback() {
+                @Override
+                public void onReceive(byte[] bytes) {
+                    StringBuffer sb = new StringBuffer();
+                    sb.append(new String(bytes)).append("\n");
+
+                    final String onBoardMes = sb.toString();
+
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            mTextView.setText(onBoardMes);
+                        }
+                    });
+                }
+            });
             mFlightController.setStateCallback(new FlightControllerState.Callback() {
                 @Override
                 public void onUpdate(@NonNull final FlightControllerState flightControllerState) {

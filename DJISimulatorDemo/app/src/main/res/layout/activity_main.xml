@@ -40,9 +40,19 @@
         android:layout_height="wrap_content"
         android:text="飛行情報"
         android:id="@+id/textview_simulator"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:layout_marginStart="300dp"
         android:layout_marginTop="120dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="onBoard sdk"
+        android:id="@+id/textview_simulator2"
+        android:textSize="15sp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="300dp"
         />
 
     <Button

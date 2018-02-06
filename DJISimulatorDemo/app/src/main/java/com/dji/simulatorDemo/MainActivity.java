@@ -98,6 +98,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ImageButton mBtnTurnLeft;
 
     private TextView mTextView;
+    private TextView mTextView2;
 
     private Timer mSendVirtualStickDataTimer;
     private SendVirtualStickDataTask mSendVirtualStickDataTask;
@@ -315,14 +316,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 public void onReceive(byte[] bytes) {
                     StringBuffer sb = new StringBuffer();
                     sb.append(new String(bytes)).append("\n");
-
                     final String onBoardMes = sb.toString();
-
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run()
                         {
-                            mTextView.setText(onBoardMes);
+                            mTextView2.setText(onBoardMes);
                         }
                     });
                 }
@@ -386,6 +385,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mBtnSimulator = (ToggleButton) findViewById(R.id.btn_start_simulator);
         mTextView = (TextView) findViewById(R.id.textview_simulator);
+        mTextView2 = (TextView) findViewById(R.id.textview_simulator2);
         mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
 
 

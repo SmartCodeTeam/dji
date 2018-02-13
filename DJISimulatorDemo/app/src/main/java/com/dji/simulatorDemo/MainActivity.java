@@ -107,6 +107,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private float mRoll;
     private float mYaw;
     private float mThrottle;
+    Timer timer ;
 
 
     @Override
@@ -121,6 +122,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         IntentFilter filter = new IntentFilter();
         filter.addAction(DJISimulatorApplication.FLAG_CONNECTION_CHANGE);
         registerReceiver(mReceiver, filter);
+
+
+        Timer timer = new Timer();
+        timer.schedule(new SampleTask(), 1000, 1000);
     }
 
     /**
@@ -547,11 +552,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             }
                         }
                     });
-                    String message = "12";
-                    mFlightController.sendDataToOnboardSDKDevice(message.getBytes(), new CommonCallbacks.CompletionCallback() {
+                    mFlightController.sendDataToOnboardSDKDevice(new byte[12], new CommonCallbacks.CompletionCallback() {
                         @Override
                         public void onResult(DJIError error) {
-
+                            showToast("onBoardにデータ転送");
                         }
                     });
 
@@ -693,6 +697,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             }
                         }
                 );
+            }
+        }
+    }
+
+    public class SampleTask extends TimerTask {
+        public void run() {
+            if (mFlightController != null) {
+
+                mFlightController.sendDataToOnboardSDKDevice(new byte[12], new CommonCallbacks.CompletionCallback() {
+                    @Override
+                    public void onResult(DJIError error) {
+                        showToast("data request");
+                    }
+                });
             }
         }
     }

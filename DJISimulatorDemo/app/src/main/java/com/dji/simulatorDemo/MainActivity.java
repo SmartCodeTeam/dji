@@ -74,9 +74,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private static final int REQUEST_PERMISSION_CODE = 12345;
 
     //以下のパラメータでスピードを変更
-    private static final float PITCH_CONTROLL_SPEED = 0.2f;
-    private static final float ROLL_CONTROLL_SPEED = 0.2f;
-    private static final float YAW_CONTROLL_SPEED = 0.5f;
+    private static final float PITCH_CONTROLL_SPEED = 0.3f;
+    private static final float ROLL_CONTROLL_SPEED = 0.3f;
+    private static final float YAW_CONTROLL_SPEED = 2.5f;
     private static final float VERTICAL_THROTTLE_SPEED = 0.2f;
 
 
@@ -107,7 +107,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private float mRoll;
     private float mYaw;
     private float mThrottle;
-
+    Timer timer ;
 
 
     @Override
@@ -122,6 +122,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         IntentFilter filter = new IntentFilter();
         filter.addAction(DJISimulatorApplication.FLAG_CONNECTION_CHANGE);
         registerReceiver(mReceiver, filter);
+
+
+        Timer timer = new Timer();
+        timer.schedule(new SampleTask(), 1000, 1000);
     }
 
     /**
@@ -314,18 +318,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
             mFlightController.setOnboardSDKDeviceDataCallback(new FlightController.OnboardSDKDeviceDataCallback() {
                 @Override
                 public void onReceive(byte[] bytes) {
+                    showToast(new String(bytes));
                     StringBuffer sb = new StringBuffer();
                     sb.append(new String(bytes)).append("\n");
                     final String onBoardMes = sb.toString();
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
-                        public void run()
-                        {
+                        public void run() {
                             mTextView2.setText(onBoardMes);
                         }
                     });
                 }
             });
+//            mFlightController.setReceiveExternalDeviceDataCallback(new FlightControllerReceivedDataFromExternalDeviceCallback() {
+//                @Override
+//                public void onResult(byte[] data) {
+//                }
+//            });
             mFlightController.setStateCallback(new FlightControllerState.Callback() {
                 @Override
                 public void onUpdate(@NonNull final FlightControllerState flightControllerState) {
@@ -337,7 +346,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             float vely = flightControllerState.getVelocityY();
                             float velz = flightControllerState.getVelocityZ();
                             float ush = flightControllerState.getUltrasonicHeightInMeters();
-                            mTextView.setText("高度1 : " + alt  + "\n"+"高度2 : " + ush+"\n"+ "x速度 : " + velx +"\n"+ "y速度 : " + vely +"\n"+ "z速度 : " + velz);
+                            mTextView.setText("高度1 : " + alt + "\n" + "高度2 : " + ush + "\n" + "x速度 : " + velx + "\n" + "y速度 : " + vely + "\n" + "z速度 : " + velz);
                         }
                     });
                 }
@@ -509,14 +518,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     //FlightControllerの各種パラメータをセットする
 
-    public void setFlightControllerData(float yaw,float pitch,float roll,float throttle) {
-        
+    public void setFlightControllerData(float yaw, float pitch, float roll, float throttle) {
+
         mYaw = yaw;
         mPitch = pitch;
         mRoll = roll;
         mThrottle = throttle;
-                
-        if(null==mSendVirtualStickDataTimer)
+
+        if (null == mSendVirtualStickDataTimer)
 
         {
             mSendVirtualStickDataTask = new SendVirtualStickDataTask();
@@ -531,21 +540,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.btn_enable_virtual_stick:
-                if (mFlightController != null){
+                if (mFlightController != null) {
 
                     mFlightController.setVirtualStickModeEnabled(true, new CommonCallbacks.CompletionCallback() {
                         @Override
                         public void onResult(DJIError djiError) {
-                            if (djiError != null){
+                            if (djiError != null) {
                                 showToast(djiError.getDescription());
-                            }else
-                            {
+                            } else {
                                 showToast("バーチャルスティックを有効化しました。");
                             }
                         }
                     });
+                    mFlightController.sendDataToOnboardSDKDevice(new byte[12], new CommonCallbacks.CompletionCallback() {
+                        @Override
+                        public void onResult(DJIError error) {
+                            showToast("onBoardにデータ転送");
+                        }
+                    });
 
-                }else{
+                } else {
                     showToast("機体が接続されていないか、コントローラを取得できていません。");
 
                 }
@@ -553,7 +567,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.btn_disable_virtual_stick:
 
-                if (mFlightController != null){
+                if (mFlightController != null) {
                     mFlightController.setVirtualStickModeEnabled(false, new CommonCallbacks.CompletionCallback() {
                         @Override
                         public void onResult(DJIError djiError) {
@@ -564,13 +578,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             }
                         }
                     });
-                }else{
+                } else {
                     showToast("機体が接続されていないか、コントローラを取得できていません。");
                 }
                 break;
 
             case R.id.btn_take_off:
-                if (mFlightController != null){
+                if (mFlightController != null) {
                     mFlightController.startTakeoff(
                             new CommonCallbacks.CompletionCallback() {
                                 @Override
@@ -583,14 +597,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                                 }
                             }
                     );
-                }else{
+                } else {
                     showToast("機体が接続されていないか、コントローラを取得できていません。");
                 }
 
                 break;
 
             case R.id.btn_land:
-                if (mFlightController != null){
+                if (mFlightController != null) {
 
                     mFlightController.startLanding(
                             new CommonCallbacks.CompletionCallback() {
@@ -605,56 +619,56 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             }
                     );
 
-                }else{
+                } else {
                     showToast("機体が接続されていないか、コントローラを取得できていません。");
                 }
 
                 break;
 
             case R.id.right:
-                setFlightControllerData(0,0,ROLL_CONTROLL_SPEED,0);
+                setFlightControllerData(0, 0, ROLL_CONTROLL_SPEED, 0);
                 showToast("RIGHT");
                 break;
 
             case R.id.left:
-                setFlightControllerData(0,0,-ROLL_CONTROLL_SPEED,0);
+                setFlightControllerData(0, 0, -ROLL_CONTROLL_SPEED, 0);
                 showToast("LEFT");
                 break;
 
             case R.id.forward:
-                setFlightControllerData(0,-PITCH_CONTROLL_SPEED,0,0);
+                setFlightControllerData(0, -PITCH_CONTROLL_SPEED, 0, 0);
                 showToast("FORWARD");
 
                 break;
 
             case R.id.back:
-                setFlightControllerData(0,PITCH_CONTROLL_SPEED,0,0);
+                setFlightControllerData(0, PITCH_CONTROLL_SPEED, 0, 0);
                 showToast("BACK");
 
                 break;
 
             case R.id.up:
-                setFlightControllerData(0,0,0,VERTICAL_THROTTLE_SPEED);
+                setFlightControllerData(0, 0, 0, VERTICAL_THROTTLE_SPEED);
                 showToast("UP");
 
                 break;
             case R.id.down:
-                setFlightControllerData(0,0,0,-VERTICAL_THROTTLE_SPEED);
+                setFlightControllerData(0, 0, 0, -VERTICAL_THROTTLE_SPEED);
                 showToast("DOWN");
                 break;
 
             case R.id.turn_left:
-                setFlightControllerData(-YAW_CONTROLL_SPEED,0,0,0);
+                setFlightControllerData(-YAW_CONTROLL_SPEED, 0, 0, 0);
                 showToast("TURN_LEFT");
                 break;
 
             case R.id.turn_right:
-                setFlightControllerData(YAW_CONTROLL_SPEED,0,0,0);
+                setFlightControllerData(YAW_CONTROLL_SPEED, 0, 0, 0);
                 showToast("TURN_RIGHT");
                 break;
 
             case R.id.pause:
-                setFlightControllerData(0,0,0,0);
+                setFlightControllerData(0, 0, 0, 0);
                 showToast("PAUSE");
 
                 break;
@@ -683,6 +697,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             }
                         }
                 );
+            }
+        }
+    }
+
+    public class SampleTask extends TimerTask {
+        public void run() {
+            if (mFlightController != null) {
+
+                mFlightController.sendDataToOnboardSDKDevice(new byte[12], new CommonCallbacks.CompletionCallback() {
+                    @Override
+                    public void onResult(DJIError error) {
+                        showToast("data request");
+                    }
+                });
             }
         }
     }
